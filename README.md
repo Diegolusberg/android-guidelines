@@ -1,6 +1,6 @@
 # Android Guidelines and Tools
 
-List of guidelines and libraries that we use at __ribot__ when developing for the __Android__ platform. 
+This Android guideline was forked from __ribot__ and is under heavy contruction. Any contribution will be happily considered.
 
 - [Project and code guidelines](project_and_code_guidelines.md)
 - [Architecture Guidelines](architecture_guidelines/android_architecture.md) 
