@@ -2,23 +2,27 @@
 
 ## 1.1 Project structure 
 
-New projects should follow the Android Gradle project structure that is defined on the [Android Gradle plugin user guide](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure). The [BoilerPlate](https://github.com/ribot/android-boilerplate) project is a good reference.
+New projects should follow the Android Gradle project structure that is defined on the [Android Gradle plugin user guide](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure).
 
 ## 1.2 Package structure 
 
 #### App
-* ui
-	* fragment
-	* activity
-	* dialog
-	* widget
-	* adapter
-* service
-* data
-	* remote
-	* local
-	* model	 
-* util
+- fragment
+- activity
+- dialog
+- widget
+- adapter
+- service/controller
+- api (for any api that you consume)
+  - youtube (optional)
+  - amazon (optional)
+  - twitter (optional)
+  - instagram (optional)
+- receiver
+- model
+- rx/bus/dagger/etc... (or any package for components created for any sdk/framework or architecture library) 
+- view
+- util
 
 ## 1.3 File naming 
 
@@ -36,15 +40,15 @@ Resources file names are written in __lowercase_underscore__.
 Naming conventions for drawables:
 
 
-| Asset Type   | Prefix            |		Example               |
+| Asset Type   | Prefix            |		Example          |
 |--------------| ------------------|-----------------------------|
 | Action bar   | `ab_`             | `ab_stacked.9.png`          |
-| Button       | `btn_`	            | `btn_send_pressed.9.png`    |
+| Button       | `btn_`	           | `btn_send_pressed.9.png`    |
 | Dialog       | `dialog_`         | `dialog_top.9.png`          | 
 | Divider      | `divider_`        | `divider_horizontal.9.png`  |
-| Icon         | `ic_`	            | `ic_star.png`               |
-| Menu         | `menu_	`           | `menu_submenu_bg.9.png`     |
-| Notification | `notification_`	| `notification_bg.9.png`     |
+| Icon         | `ic_`	           | `ic_star.png`               |
+| Menu         | `menu_	`          | `menu_submenu_bg.9.png`     |
+| Notification | `notification_`   | `notification_bg.9.png`     |
 | Tabs         | `tab_`            | `tab_pressed.9.png`         |
 
 Naming conventions for icons (taken from [Android iconography guidelines](http://developer.android.com/design/style/iconography.html)):
@@ -378,11 +382,11 @@ When using one of these components, you __must__ define the keys as a `static fi
 
 | Element            | Field Name Prefix |
 | -----------------  | ----------------- |
-| SharedPreferences  | `PREF_`             |
-| Bundle             | `BUNDLE_`           | 
-| Fragment Arguments | `ARGUMENT_`         |   
-| Intent Extra       | `EXTRA_`            |
-| Intent Action      | `ACTION_`           |
+| SharedPreferences  | `PREF_`           |
+| Bundle             | `BUNDLE_`         | 
+| Fragment Arguments | `ARGUMENT_`       |   
+| Intent Extra       | `EXTRA_`          |
+| Intent Action      | `ACTION_`         |
 
 Note that the arguments of a Fragment - `Fragment.getArguments()` - are also a Bundle. However, because this is a quite common use of Bundles, we define a different prefix for them. 
 
@@ -537,10 +541,10 @@ IDs should be prefixed with the name of the element in lowercase underscore. For
 
 | Element            | Prefix            |
 | -----------------  | ----------------- |
-| `TextView`           | `text_`             |
-| `ImageView`          | `image_`            | 
-| `Button`             | `button_`           |   
-| `Menu`               | `menu_`             |
+| `TextView`         | `text_`           |
+| `ImageView`        | `image_`          | 
+| `Button`           | `button_`         |   
+| `Menu`             | `menu_`           |
 
 Image view example:
 
@@ -567,12 +571,11 @@ String names start with a prefix that indentifies the section they belong to. Fo
 
 
 | Prefix             | Description                           |
-| -----------------  | --------------------------------------|
-| `error_`             | An error message                      |
-| `msg_`               | A regular information message         |       
-| `title_`             | A title, i.e. a dialog title          | 
-| `action_`            | An action such as "Save" or "Create"  |
-
+| -------------------| --------------------------------------|
+| `error_`           | An error message                      |
+| `msg_`             | A regular information message         |       
+| `title_`           | A title, i.e. a dialog title          | 
+| `action_`          | An action such as "Save" or "Create"  |
 
 
 #### 2.3.2.3 Styles and Themes
@@ -597,8 +600,8 @@ The test classes should match the name of the class that the tests are targeting
 
 The name of the tests must start with `should` followed by the expected behaviour. For example:
 
-* `shouldLoadUserData()`
-* `shouldThrowExceptionWhenLoadingUser()`
+- `shouldLoadUserData()`
+- `shouldThrowExceptionWhenLoadingUser()`
 
 ### 2.4.2 Espresso tests
 
