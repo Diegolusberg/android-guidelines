@@ -174,19 +174,54 @@ Another recomendation is to __NOT USE__ `RelativeLayout` as an wrapper to add so
 
 Rather than hard coding `android:text`, consider using [Designtime](http://tools.android.com/tips/layout-designtime-attributes) attributes (e.g: `tools:text`, `tools:background`, `tools:minHeight`, `tools:src` and etc...) available for Android Studio. There are some limitations, but major attributes can be used. It's very helpfull for prototyping and layout.
 
-#### 1.3.1.5 Menu files  
+#### 1.3.1.5 Styles
+
+As a rule of thumb, attributes `android:layout_****` should be defined in the layout XML, while other attributes `android:****` should stay in a style XML. This rule has exceptions, but in general works fine. The idea is to keep only layout (positioning, margin, sizing) and content attributes in the layout files, while keeping all appearance details (colors, padding, font) in styles files.
+
+The exceptions are:
+
+- `android:id` should obviously be in the layout files
+- `android:orientation` for a LinearLayout normally makes more sense in layout files
+- `android:text` should be in layout files because it defines content
+- Sometimes it will make sense to make a generic style defining `android:layout_width` and `android:layout_height` but by default these should appear in the layout files
+
+Use styles. Almost every project needs to properly use styles, because it is very common to have a repeated appearance for a view. At least you should have a common style for most text content in the application, for example:
+
+```xml
+<style name="ContentText">
+    <item name="android:textSize">@dimen/font_normal</item>
+    <item name="android:textColor">@color/basic_black</item>
+</style>
+```
+
+Applied to `TextView`:
+
+```xml
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/price"
+    style="@style/ContentText"
+    />
+```
+
+You probably will need to do the same for buttons, but don't stop there yet. Go beyond and move a group of related and repeated `android:****` attributes to a common style.
+
+Split a large style file into other files. You don't need to have a single `styles.xml` file. Android SDK supports other files out of the box, there is nothing magical about the name styles, what matters are the XML tags `<style>` inside the file. Hence you can have files `styles.xml`, `styles_home.xml`, `styles_item_details.xml`, `styles_forms.xml`. Unlike resource directory names which carry some meaning for the build system, filenames in `res/values` can be arbitrary.
+
+#### 1.3.1.6 Menu files  
 
 Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be use in the `UserActivity`, then the name of the file should be `activity_user.xml`
 
 A good practise is to not include the word `menu` as part of the name because these files are already located in directory called menu.
 
-#### 1.3.1.6 Values files
+#### 1.3.1.7 Values files
 
 Resource files in the values folder should be __plural__, e.g. `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
 ## 1.4 Dependencies
 
-Avoid Maven dynamic dependency resolution Avoid the use of dynamically versioned, such as 2.1.+ as this may result in different in unstable builds or subtle, untracked differences in behavior between builds. The use of static versions such as 2.1.1 helps create a more stable, predictable and repeatable development environment.
+Avoid Maven dynamic dependency resolution, such as 2.1.+ as this may result in different in unstable builds or subtle, untracked differences in behavior between builds. The use of static versions such as 2.1.1 helps create a more stable, predictable and repeatable development environment.
 
 # 2 Code guidelines 
 
