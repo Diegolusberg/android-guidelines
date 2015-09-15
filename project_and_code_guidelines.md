@@ -168,15 +168,19 @@ A couple of problems may occur. You might experience performance problems, becau
 
 Therefore, try to keep your views hierarchy as flat as possible: learn how to use RelativeLayout, how to optimize your layouts and to use the <merge> tag.
 
-Another recomendation is to NOT USE `RelativeLayout` as an wrapper to add some padding or backgroud or anything. He is very complex just to wrap a view. Use `FrameLayout` instead.
+Another recomendation is to __NOT USE__ `RelativeLayout` as an wrapper to add some padding or backgroud or anything. He is very complex just to wrap a view. Use `FrameLayout` instead.
 
-#### 1.3.1.4 Menu files  
+#### 1.3.1.4 Use designtime attributes
+
+Rather than hard coding android:text, consider using [Designtime](http://tools.android.com/tips/layout-designtime-attributes) attributes available for Android Studio. There are some limitations, but major attributes can be used. It's very helpfull for prototyping and layout.
+
+#### 1.3.1.5 Menu files  
 
 Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be use in the `UserActivity`, then the name of the file should be `activity_user.xml`
 
 A good practise is to not include the word `menu` as part of the name because these files are already located in directory called menu.
 
-#### 1.3.1.5 Values files
+#### 1.3.1.6 Values files
 
 Resource files in the values folder should be __plural__, e.g. `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
