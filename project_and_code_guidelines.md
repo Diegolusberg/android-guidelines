@@ -4,6 +4,43 @@
 
 New projects should follow the Android Gradle project structure that is defined on the [Android Gradle plugin user guide](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure).
 
+Old structure:
+
+```
+old-structure
+├─ assets
+├─ libs
+├─ res
+├─ src
+│  └─ com/futurice/project
+├─ AndroidManifest.xml
+├─ build.gradle
+├─ project.properties
+└─ proguard-rules.pro
+```
+
+New structure:
+
+```
+new-structure
+├─ library-foobar
+├─ app
+│  ├─ libs
+│  ├─ src
+│  │  ├─ androidTest
+│  │  │  └─ java
+│  │  │     └─ com/futurice/project
+│  │  └─ main
+│  │     ├─ java
+│  │     │  └─ com/futurice/project
+│  │     ├─ res
+│  │     └─ AndroidManifest.xml
+│  ├─ build.gradle
+│  └─ proguard-rules.pro
+├─ build.gradle
+└─ settings.gradle
+```
+
 ## 1.2 Package structure 
 
 #### App
