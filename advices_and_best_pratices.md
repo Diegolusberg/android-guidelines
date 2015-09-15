@@ -1,4 +1,4 @@
-# Some advices and sources of content for Android development
+# Some advices, sources of content and best pratices tips for Android development
 
 ### Peoples and organizations to follow
 
@@ -16,7 +16,6 @@
 
 - [Antonio Leiva](http://antonioleiva.com/) has good reading on his [Google Plus](https://plus.google.com/+AntonioLeivaGordillo/posts).
   - And if you are interested to learn Kotlin, he has a lot of content in his [site](http://antonioleiva.com/kotlin/) 
-
 - Some of Google Android engineers
   - [Chris Banes](https://plus.google.com/+ChrisBanes) has some advices and news about Support Libraries releases.
   - [Roman Nurik](https://plus.google.com/+RomanNurik/posts) has some content about Material Design.
