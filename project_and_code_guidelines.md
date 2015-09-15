@@ -39,7 +39,6 @@ Resources file names are written in __lowercase_underscore__.
  
 Naming conventions for drawables:
 
-
 | Asset Type   | Prefix            |		Example          |
 |------------- | ----------------- |---------------------------- |
 | Action bar   | `ab_`             | `ab_stacked.9.png`          |
@@ -89,15 +88,64 @@ Layout files should match the name of the Android components that they are inten
 | Partial layout    | ---                    | `include_stats_bar.xml` or `partial_stats_bar.xml` |
 | Custom View layout| `UserView`             | `view_user.xml`                                    |
 
-#### 1.3.1.3 Menu files  
+#### 1.3.1.3 Avoid deep layout hierarchy
+
+Avoid a deep hierarchy of views. Sometimes you might be tempted to just add yet another LinearLayout, to be able to accomplish an arrangement of views. This kind of situation may occur:
+
+```xml
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        ...
+        >
+
+        <LinearLayout
+            ...
+            >
+
+            <LinearLayout
+                ...
+                >
+
+                <LinearLayout
+                    ...
+                    >
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    
+</LinearLayout>
+```
+
+Even if you don't witness this explicitly in a layout file, it might end up happening if you are inflating (in Java) views into other views.
+
+A couple of problems may occur. You might experience performance problems, because there are is a complex UI tree that the processor needs to handle. Another more serious issue is a possibility of StackOverflowError.
+
+Therefore, try to keep your views hierarchy as flat as possible: learn how to use RelativeLayout, how to optimize your layouts and to use the <merge> tag.
+
+Another recomendation is to NOT USE `RelativeLayout` as an wrapper to add some padding or backgroud or anything. He is very complex just to wrap a view. Use `FrameLayout` instead.
+
+#### 1.3.1.4 Menu files  
 
 Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be use in the `UserActivity`, then the name of the file should be `activity_user.xml`
 
-A good practise is to not include the word `menu` as part of the name because these files are already located in directory called menu. 
+A good practise is to not include the word `menu` as part of the name because these files are already located in directory called menu.
 
-#### 1.3.1.4 Values files
+#### 1.3.1.5 Values files
 
 Resource files in the values folder should be __plural__, e.g. `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
+
+## 1.4 Dependencies
+
+Avoid Maven dynamic dependency resolution Avoid the use of dynamically versioned, such as 2.1.+ as this may result in different in unstable builds or subtle, untracked differences in behavior between builds. The use of static versions such as 2.1.1 helps create a more stable, predictable and repeatable development environment.
 
 # 2 Code guidelines 
 
@@ -377,8 +425,6 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 ### 2.2.13 String constants, naming and values
 
 Many elements of the Android SDK such as `SharedPreferences`, `Bundle` or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
-
-(Must be reviewed!!!!!)
 
 When using one of these components, you __must__ define the keys as a `static final` fields and they should be prefixed as indicaded below.
 
