@@ -8,6 +8,9 @@ There are a great variety of libraries to speed up the development. Some of then
 
 ### Architecture
 - [RxJava](https://github.com/ReactiveX/RxJava) & [RxAndroid](https://github.com/ReactiveX/RxAndroid) for Reactive programming.
+  - Rxjava is a library for Reactive Programming, in other words, handling asynchronous events. It is a powerful and promising paradigm, which can also be confusing since it's so different. We recommend to take some caution before using this library to architect the entire application. There are some projects done by us using RxJava, if you need help talk to one of these people: Timo Tuominen, Olli Salonen, Andre Medeiros, Mark Voit, Antti Lammi, Vera Izrailit, Juha Ristolainen. We have written some blog posts on it: [[1]](http://blog.futurice.com/tech-pick-of-the-week-rx-for-net-and-rxjava-for-android), [[2]](http://blog.futurice.com/top-7-tips-for-rxjava-on-android), [[3]](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754), [[4]](http://blog.futurice.com/android-development-has-its-own-swift).
+  - If you have no previous experience with Rx, start by applying it only for responses from the API. Alternatively, start by applying it for simple UI event handling, like click events or typing events on a search field. If you are confident in your Rx skills and want to apply it to the whole architecture, then write Javadocs on all the tricky parts. Keep in mind that another programmer unfamiliar to RxJava might have a very hard time maintaining the project. Do your best to help them understand your code and also Rx.
+
 - [Otto](http://square.github.io/otto/) to reduce coupling with component communications without going crazy with Listeners and Callback hell.
 - [AndroidAnnotations](http://androidannotations.org/) to reduce the boilerplate code. Some of useful use cases are:
   - A powerful dependency injection for: views, contexts, events handlers, resources values, beans.
@@ -74,7 +77,6 @@ There are a great variety of libraries to speed up the development. Some of then
 
 ### Utilities
 - [JodaTime](https://github.com/dlew/joda-time-android) to handle datime and time parsing and some temporal operations, without going crazy with broken Java 6 Calendar and Date API's.
-
 
 For a list of other useful libraries visit [android arsenal](http://android-arsenal.com). Do also ask other Android devs here what libraries we’ve used recently as for a lot of things, what’s best changes very quickly.
 
