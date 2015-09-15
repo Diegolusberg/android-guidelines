@@ -172,7 +172,7 @@ Another recomendation is to __NOT USE__ `RelativeLayout` as an wrapper to add so
 
 #### 1.3.1.4 Use designtime attributes
 
-Rather than hard coding android:text, consider using [Designtime](http://tools.android.com/tips/layout-designtime-attributes) attributes available for Android Studio. There are some limitations, but major attributes can be used. It's very helpfull for prototyping and layout.
+Rather than hard coding `android:text`, consider using [Designtime](http://tools.android.com/tips/layout-designtime-attributes) attributes (e.g: `tools:text`, `tools:background`, `tools:minHeight`, `tools:src` and etc...) available for Android Studio. There are some limitations, but major attributes can be used. It's very helpfull for prototyping and layout.
 
 #### 1.3.1.5 Menu files  
 
