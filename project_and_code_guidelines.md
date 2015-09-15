@@ -10,7 +10,6 @@ New projects should follow the Android Gradle project structure that is defined 
 - fragment
 - activity
 - dialog
-- widget
 - adapter
 - service/controller
 - api (for any api that you consume)
@@ -21,7 +20,8 @@ New projects should follow the Android Gradle project structure that is defined 
 - receiver
 - model
 - rx/bus/dagger/etc... (or any package for components created for any sdk/framework or architecture library) 
-- view
+- view (for any Custom View that receives any model object and bind the data to it's children, e.g: UserAvatarView, PostView, etc...)
+- widget (for any widget that can be reused, e.g: FancyButton, CustomFAB, etc...)
 - util
 
 ## 1.3 File naming 
@@ -41,7 +41,7 @@ Naming conventions for drawables:
 
 
 | Asset Type   | Prefix            |		Example          |
-|--------------| ------------------|-----------------------------|
+|------------- | ----------------- |---------------------------- |
 | Action bar   | `ab_`             | `ab_stacked.9.png`          |
 | Button       | `btn_`	           | `btn_send_pressed.9.png`    |
 | Dialog       | `dialog_`         | `dialog_top.9.png`          | 
@@ -54,7 +54,7 @@ Naming conventions for drawables:
 Naming conventions for icons (taken from [Android iconography guidelines](http://developer.android.com/design/style/iconography.html)):
 
 | Asset Type                      | Prefix             | Example                      |
-| --------------------------------| ----------------   | ---------------------------- | 
+| ------------------------------- | ------------------ | ---------------------------- | 
 | Icons                           | `ic_`              | `ic_star.png`                |
 | Launcher icons                  | `ic_launcher`      | `ic_launcher_calendar.png`   |
 | Menu icons and Action Bar icons | `ic_menu`          | `ic_menu_archive.png`        |
@@ -65,7 +65,7 @@ Naming conventions for icons (taken from [Android iconography guidelines](http:/
 Naming conventions for selector states:
 
 | State	       | Suffix          | Example                     |
-|--------------|-----------------|-----------------------------|
+|------------- |---------------- |---------------------------- |
 | Normal       | `_normal`       | `btn_order_normal.9.png`    |
 | Pressed      | `_pressed`      | `btn_order_pressed.9.png`   |
 | Focused      | `_focused`      | `btn_order_focused.9.png`   |
@@ -77,17 +77,17 @@ Naming conventions for selector states:
 
 Layout files should match the name of the Android components that they are intended for but moving the top level component name to the beginning. For example, if we are creating a layout for the `SignInActivity`, the name of the layout file should be `activity_sign_in.xml`.
 
-| Component        | Class Name             | Layout Name                   |
-| ---------------- | ---------------------- | ----------------------------- |
-| Activity         | `UserProfileActivity`  | `activity_user_profile.xml`   |
-| Fragment         | `SignUpFragment`       | `fragment_sign_up.xml`        |
-| Dialog           | `ChangePasswordDialog` | `dialog_change_password.xml`  |
-| AdapterView item | ---                    | `item_person.xml`             |
-| Partial layout   | ---                    | `partial_stats_bar.xml`       |
-
-A slighly different case is when we are creating a layout that is going to be inflated by an `Adapter`, e.g to populate a `ListView`. In this case, the name of the layout should start with `item_`
-
-Note that there are cases where these rules will not be possible to apply. For example, when creating layout files that are intended to be part of other layouts. In this case you should use the prefix `partial_`
+| Component         | Class Name             | Layout Name                                        |
+| ----------------- | ---------------------- | -------------------------------------------------- |
+| Activity          | `UserProfileActivity`  | `activity_user_profile.xml`                        |
+| Fragment          | `SignUpFragment`       | `fragment_sign_up.xml`                             |
+| Dialog            | `ChangePasswordDialog` | `dialog_change_password.xml`                       |
+| ListView item     | ---                    | `list_item_person.xml`                             |
+| RecyclerView item | ---                    | `list_item_person.xml`                             |
+| Pager item        | ---                    | `pager_item_person.xml`                            |
+| GridView item     | ---                    | `grid_item_person.xml`                             |
+| Partial layout    | ---                    | `include_stats_bar.xml` or `partial_stats_bar.xml` |
+| Custom View layout| `UserView`             | `view_user.xml`                                    |
 
 #### 1.3.1.3 Menu files  
 
@@ -175,8 +175,8 @@ public class MyClass {
 	
 ### 2.2.3 Treat acronyms as words
 
-| Good           | Bad            |
-| -------------- | -------------- |
+| Good             | Bad              |
+| ---------------- | ---------------- |
 | `XmlHttpRequest` | `XMLHTTPRequest` | 
 | `getCustomerId`  | `getCustomerID`  | 
 | `String url`     | `String URL`     |
@@ -378,10 +378,12 @@ public void loadUserAsync(Context context, int userId, UserCallback callback);
 
 Many elements of the Android SDK such as `SharedPreferences`, `Bundle` or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
 
-When using one of these components, you __must__ define the keys as a `static final` fields and they should be prefixed as indicaded below. 
+(Must be reviewed!!!!!)
+
+When using one of these components, you __must__ define the keys as a `static final` fields and they should be prefixed as indicaded below.
 
 | Element            | Field Name Prefix |
-| -----------------  | ----------------- |
+| ------------------ | ----------------- |
 | SharedPreferences  | `PREF_`           |
 | Bundle             | `BUNDLE_`         | 
 | Fragment Arguments | `ARGUMENT_`       |   
@@ -456,11 +458,11 @@ __Method chain case__
 When multiple methods are chained in the same line - for example when using Builders - every call to a method should go in its own line, breaking the line before the `.`
 
 ```java
-Picasso.with(context).load("http://ribot.co.uk/images/sexyjoe.jpg").into(imageView);
+Glide.with(context).load("http://ribot.co.uk/images/sexyjoe.jpg").into(imageView);
 ```
 
 ```java
-Picasso.with(context)
+Glide.with(context)
         .load("http://ribot.co.uk/images/sexyjoe.jpg")
         .into(imageView);
 ```
@@ -536,15 +538,15 @@ Resource IDs and names are written in __lowercase_underscore__
 
 #### 2.3.2.1 ID naming
 
-IDs should be prefixed with the name of the element in lowercase underscore. For example:
+IDs should be sufixed with the name of the element in lowercase underscore. For example:
 
 
-| Element            | Prefix            |
+| Element            | Sufix             |
 | -----------------  | ----------------- |
-| `TextView`         | `text_`           |
-| `ImageView`        | `image_`          | 
-| `Button`           | `button_`         |   
-| `Menu`             | `menu_`           |
+| `TextView`         | `_text_view`      |
+| `ImageView`        | `_image_view`     | 
+| `Button`           | `_button`         |   
+| `Menu`             | `_menu`           |
 
 Image view example:
 
@@ -565,13 +567,13 @@ Menu example:
 </menu>
 ```
 
-#### 2.3.2.2 Strings
+#### 2.3.2.2 Strings (Must be reviewed!!!)
 
 String names start with a prefix that indentifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section then you should follow the rules below:
 
 
 | Prefix             | Description                           |
-| -------------------| --------------------------------------|
+| ------------------ | ------------------------------------- |
 | `error_`           | An error message                      |
 | `msg_`             | A regular information message         |       
 | `title_`           | A title, i.e. a dialog title          | 
