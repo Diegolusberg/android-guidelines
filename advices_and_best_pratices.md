@@ -16,6 +16,8 @@
 
 - [Antonio Leiva](http://antonioleiva.com/) has good reading on his [Google Plus](https://plus.google.com/+AntonioLeivaGordillo/posts).
   - And if you are interested to learn Kotlin, he has a lot of content in his [site](http://antonioleiva.com/kotlin/) 
+- [Lucas Rocha](https://plus.google.com/u/1/+LucasRocha/posts) Has some tips about Android Development.
+  
 - Some of Google Android engineers
   - [Chris Banes](https://plus.google.com/+ChrisBanes) has some advices and news about Support Libraries releases.
   - [Roman Nurik](https://plus.google.com/+RomanNurik/posts) has some content about Material Design.
@@ -26,3 +28,10 @@
 - [AndroidDevelopers](https://plus.google.com/+AndroidDevelopers/posts) for advices and tips for android development.
 
 - [Google Developers](https://plus.google.com/u/0/+GoogleDevelopers/posts) for news about Google Play Services and a lot more about Google API's.
+
+
+### Pages about trending topics or available libraries in Android Development
+
+- [AndroidWeekly](http://androidweekly.net)
+- [Android Arsenal](http://www.android-arsenal.com)
+- [awesome-android-ui](https://github.com/wasabeef/awesome-android-ui)
