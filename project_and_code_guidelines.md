@@ -44,22 +44,27 @@ new-structure
 ## 1.2 Package structure 
 
 #### App
-- fragment
-- activity
-- dialog
-- adapter
-- service/controller
-- api (for any api that you consume)
-  - youtube (optional)
-  - amazon (optional)
-  - twitter (optional)
-  - instagram (optional)
-- receiver
-- model
-- rx/bus/dagger/etc... (or any package for components created for any sdk/framework or architecture library) 
-- view (for any Custom View that receives any model object and bind the data to it's children, e.g: UserAvatarView, PostView, etc...)
-- widget (for any widget that can be reused, e.g: FancyButton, CustomFAB, etc...)
-- util
+
+```
+java
+└─ br/com/packagename
+   ├─ fragment
+   ├─ activity
+   ├─ dialog
+   ├─ adapter
+   ├─ service/controller
+   ├─ api (for any api that you consume)
+   │  ├─ youtube (optional)
+   │  ├─ amazon (optional)
+   │  ├─ twitter (optional)
+   │  └─ instagram (optional)
+   ├─ receiver
+   ├─ model
+   ├─ rx/bus/dagger/etc... (or any package for components created for any sdk/framework or architecture library) 
+   ├─ view (for any Custom View that receives any model object and bind the data to it's children, e.g: UserAvatarView, PostView, etc...)
+   ├─ widget (for any widget that can be reused, e.g: FancyButton, CustomFAB, etc...)
+   └─ util
+```
 
 ## 1.3 File naming 
 
