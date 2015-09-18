@@ -14,7 +14,10 @@ There are a great variety of libraries to speed up the development. Some of then
 - [Otto](http://square.github.io/otto/) to reduce coupling with component communications without going crazy with Listeners and Callback hell.
 - [AndroidAnnotations](http://androidannotations.org/) to reduce the boilerplate code. Some of useful use cases are:
   - A powerful dependency injection for: views, contexts, events handlers, resources values, beans.
-  - Some convenience annotations to run code on Background and in Main Thread.
+  - Some convenience annotations to run code on Background and in Main Thread. __But be aware about framework components (Activities, Fragments, Service and etc...) lifecycle__. During long tasks, some components may be destroyed while the task is running, so check for state before bind and result at any UI component.
+
+   One dangerous gotcha about Background processing is scope. When you run an Background task using `@Background`, the task hold an reference to the parent Context (Check the generated code). Think about rotating the screen many times running N background tasks. Be aware of that before abusing it...
+   A simple solution to this problem is to using this for short tasks. And delegate long tasks to `Services` or using and combination of `Thread Scheduler` or maybe `AsyncTasks` with `Event buses`. 
 - [Dagger 2](http://google.github.io/dagger/)
   - If you don't need all magic that AA gives, Dagger 2 can be a simple solution to dependency injection without reflection.
 
