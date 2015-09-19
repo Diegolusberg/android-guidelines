@@ -217,33 +217,74 @@ Split a large style file into other files. You don't need to have a single `styl
 We highly suggest a hierarchy naming convention, just like:
 
 ```xml
-<style name="Base.AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+<style name="BaseAppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
     <item name="colorAccent">@color/accent</item>
     <item name="colorPrimary">@color/primary</item>
     <item name="colorPrimaryDark">@color/primary_dark</item>
 </style>
 
-<style name="AppTheme" parent="@style/Base.AppTheme">
+<style name="AppTheme" parent="@style/BaseAppTheme">
     <!-- Any other rule that can be overrided on other qualifier -->
 </style>
 
-<style name="AppTheme.TabLayout" parent="@style/Widget.Design.TabLayout">
-    <!-- Any rule for AppTheme.TabLayout-->
-</style>
-
-<style name="AppTheme.Card" parent="@style/CardView">
+<style name="Card" parent="@style/CardView">
     <!-- Any rule for AppTheme.Card -->
 </style>
 
-<style name="AppTheme.Card.Red" parent="@style/AppTheme.Card">
+<style name="CardRed" parent="@style/AppTheme.Card">
     <item name="cardBackground">@color/md_red_500</item>
 </style>
 ```
 
-Hierarchy is good by two reasos:
+__or maybe__ with underscore's (which is better?)
 
-- You will avoid any `style` collision that may happen and avoid unexpected results.
-- It's relatively easy to find any `style` with autocomplete on major IDE's, specially Android Studio.
+```xml
+<style name="Base_AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <item name="colorAccent">@color/accent</item>
+    <item name="colorPrimary">@color/primary</item>
+    <item name="colorPrimaryDark">@color/primary_dark</item>
+</style>
+
+<style name="AppTheme" parent="@style/Base_AppTheme">
+    <!-- Any other rule that can be overrided on other qualifier -->
+</style>
+
+<style name="Card" parent="@style/CardView">
+    <!-- Any rule for AppTheme.Card -->
+</style>
+
+<style name="Card_Red" parent="@style/Card">
+    <item name="cardBackground">@color/md_red_500</item>
+</style>
+```
+
+__Be careful__ with dot notation as separators, they mean implicity inheritance for styles, this can lead to some mistakes:
+
+```xml
+<style name="Card" parent="@style/CardView">
+    <!-- Any rule for AppTheme.Card -->
+</style>
+
+<style name="Card.Red">
+    <item name="cardBackground">@color/md_red_500</item>
+</style>
+
+<!-- is the same than -->
+
+<style name="CardRed" parent="@style/Card">
+    <item name="cardBackground">@color/md_red_500</item>
+</style>
+
+<!-- but is different than -->
+
+<style name="Card.Red" parent="@style/CardBlue">
+    <item name="cardBackground">@color/md_red_500</item>
+</style>
+```
+
+The attribute `parent` means explicity inheritance, and `.` means implicitly inheritance. And explicitly inheritance always is selected over implicitly, there is __no merge__ between attributes.
+
+This video [Using Styles and Themes Without Going Crazy](https://www.youtube.com/watch?v=Jr8hJdVGHAk) of Daniel Lew will help alot with some tips about the power of styles.
 
 #### 1.3.1.6 Menu files  
 
