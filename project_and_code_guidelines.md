@@ -214,6 +214,37 @@ You probably will need to do the same for buttons, but don't stop there yet. Go 
 
 Split a large style file into other files. You don't need to have a single `styles.xml` file. Android SDK supports other files out of the box, there is nothing magical about the name styles, what matters are the XML tags `<style>` inside the file. Hence you can have files `styles.xml`, `styles_home.xml`, `styles_item_details.xml`, `styles_forms.xml`. Unlike resource directory names which carry some meaning for the build system, filenames in `res/values` can be arbitrary.
 
+We highly suggest a hierarchly naming convention, just like:
+
+```xml
+<style name="Base.AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <item name="colorAccent">@color/accent</item>
+    <item name="colorPrimary">@color/primary</item>
+    <item name="colorPrimaryDark">@color/primary_dark</item>
+</style>
+
+<style name="AppTheme" parent="@style/Base.AppTheme">
+    <!-- Any other rule that can be overrided on other qualifier -->
+</style>
+
+<style name="AppTheme.TabLayout" parent="@style/Widget.Design.TabLayout">
+    <!-- Any rule for AppTheme.TabLayout-->
+</style>
+
+<style name="AppTheme.Card" parent="@style/CardView">
+    <!-- Any rule for AppTheme.Card -->
+</style>
+
+<style name="AppTheme.Card.Red" parent="@style/AppTheme.Card">
+    <item name="cardBackground">@color/md_red_500</item>
+</style>
+```
+
+Hierarchy is good by two reasos:
+
+- You will avoid any `style` collision that may happen and avoid unexpected results.
+- It's relatively easy to find any `style` with autocomplete on major IDE's, specially Android Studio.
+
 #### 1.3.1.6 Menu files  
 
 Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be use in the `UserActivity`, then the name of the file should be `activity_user.xml`
@@ -226,7 +257,9 @@ Resource files in the values folder should be __plural__, e.g. `strings.xml`, `s
 
 ## 1.4 Dependencies
 
-Avoid Maven dynamic dependency resolution, such as 2.1.+ as this may result in different in unstable builds or subtle, untracked differences in behavior between builds. The use of static versions such as 2.1.1 helps create a more stable, predictable and repeatable development environment.
+Try to avoid Maven dynamic dependency resolution, such as `io.reactivex:rxjava:1.0.+` as this may result in different in unstable builds or subtle, untracked differences in behavior between builds. But __never__ use dependency like `io.reactivex:rxjava:+` or `io.reactivex:rxjava:2.+`, they are too much instable. Dependencies like `io.reactivex:rxjava:1.0.+` as a little less problematic, but is not recommended.
+
+The use of static versions such as `2.1.1` helps create a more stable, predictable and repeatable development environment. The process to update these versions may be boring, going one on one to your dependencies to find the latest version. But this process makes your app much more stable as said before.
 
 # 2 Code guidelines 
 
@@ -268,7 +301,6 @@ See the reason why and some alternatives [here](https://source.android.com/sourc
 ### 2.1.3 Don't use finalizers
 
 _We don't use finalizers. There are no guarantees as to when a finalizer will be called, or even that it will be called at all. In most cases, you can do what you need from a finalizer with good exception handling. If you absolutely need it, define a `close()` method (or the like) and document exactly when that method needs to be called. See `InputStream` for an example. In this case it is appropriate but not required to print a short log message from the finalizer, as long as it is not expected to flood the logs._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#dont-use-finalizers))
-
 
 ### 2.1.4 Fully qualify imports
 
