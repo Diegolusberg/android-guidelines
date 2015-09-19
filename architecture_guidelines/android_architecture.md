@@ -1,6 +1,6 @@
 # Architecture Guidelines
 
-The architecture above is a simple __recommendation__ of a well structured architecture*. And it's heavly relies on RxJava framework to make some separation of concerns, some encapsulation about service and business logic and creating an abstraction about Threading Scheduler much more easier to do.
+The architecture above is a simple __recommendation__ of a well structured architecture*. And it's heavly relies on RxJava framework to make some separation of concerns, some encapsulation about service and business logic and creating an abstraction about Threading Scheduler much more easier to work.
 
 * __UI Layer__: this is where Activities, Fragments and other standard Android components live. It's responsible for displaying the data received from the data layer to the user as well as handling its interactions and inputs (click listeners, etc).
 
