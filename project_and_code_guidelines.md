@@ -214,7 +214,7 @@ You probably will need to do the same for buttons, but don't stop there yet. Go 
 
 Split a large style file into other files. You don't need to have a single `styles.xml` file. Android SDK supports other files out of the box, there is nothing magical about the name styles, what matters are the XML tags `<style>` inside the file. Hence you can have files `styles.xml`, `styles_home.xml`, `styles_item_details.xml`, `styles_forms.xml`. Unlike resource directory names which carry some meaning for the build system, filenames in `res/values` can be arbitrary.
 
-We highly suggest a hierarchly naming convention, just like:
+We highly suggest a hierarchy naming convention, just like:
 
 ```xml
 <style name="Base.AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
