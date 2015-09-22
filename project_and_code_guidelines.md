@@ -1,3 +1,57 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [1. Project guidelines](#1-project-guidelines)
+  - [1.1 Project structure](#11-project-structure)
+  - [1.2 Package structure](#12-package-structure)
+      - [App](#app)
+  - [1.3 File naming](#13-file-naming)
+    - [1.3.1 Class files](#131-class-files)
+    - [1.3.1 Resources files](#131-resources-files)
+      - [1.3.1.1 Drawable files](#1311-drawable-files)
+      - [1.3.1.2 Layout files](#1312-layout-files)
+      - [1.3.1.3 Avoid deep layout hierarchy](#1313-avoid-deep-layout-hierarchy)
+      - [1.3.1.4 Use designtime attributes](#1314-use-designtime-attributes)
+      - [1.3.1.5 Styles](#1315-styles)
+      - [1.3.1.6 Menu files](#1316-menu-files)
+      - [1.3.1.7 Values files](#1317-values-files)
+  - [1.4 Dependencies](#14-dependencies)
+- [2 Code guidelines](#2-code-guidelines)
+  - [2.1 Java language rules](#21-java-language-rules)
+    - [2.1.1 Don't ignore exceptions](#211-dont-ignore-exceptions)
+    - [2.1.2 Don't catch generic exception](#212-dont-catch-generic-exception)
+    - [2.1.3 Don't use finalizers](#213-dont-use-finalizers)
+    - [2.1.4 Fully qualify imports](#214-fully-qualify-imports)
+  - [2.2 Java style rules](#22-java-style-rules)
+    - [2.2.1 Fields definition and naming](#221-fields-definition-and-naming)
+    - [2.2.3 Treat acronyms as words](#223-treat-acronyms-as-words)
+    - [2.2.4 Use spaces for indentation](#224-use-spaces-for-indentation)
+    - [2.2.5 Use standard brace style](#225-use-standard-brace-style)
+    - [2.2.6 Use standard Java annotations](#226-use-standard-java-annotations)
+    - [2.2.7 Limit variable scope](#227-limit-variable-scope)
+    - [2.2.8 Order import statements](#228-order-import-statements)
+    - [2.2.9 Logging guidelines](#229-logging-guidelines)
+    - [2.2.10 Class member ordering](#2210-class-member-ordering)
+    - [2.2.11 Parameter ordering in methods](#2211-parameter-ordering-in-methods)
+    - [2.2.13 String constants, naming and values](#2213-string-constants-naming-and-values)
+    - [2.2.14 Arguments in Fragments and Activities](#2214-arguments-in-fragments-and-activities)
+    - [2.2.15 Line length limit](#2215-line-length-limit)
+      - [2.2.15.1 Line-wrapping strategies](#22151-line-wrapping-strategies)
+    - [2.2.16 RxJava chains styling](#2216-rxjava-chains-styling)
+  - [2.3 XML style rules](#23-xml-style-rules)
+    - [2.3.1 Use self closing tags](#231-use-self-closing-tags)
+    - [2.3.2 Resources naming](#232-resources-naming)
+      - [2.3.2.1 ID naming](#2321-id-naming)
+      - [2.3.2.2 Strings (Must be reviewed!!!)](#2322-strings-must-be-reviewed)
+      - [2.3.2.3 Styles and Themes](#2323-styles-and-themes)
+    - [2.3.3 Attributes ordering](#233-attributes-ordering)
+  - [2.4 Tests style rules](#24-tests-style-rules)
+    - [2.4.1 Unit tests](#241-unit-tests)
+    - [2.4.2 Espresso tests](#242-espresso-tests)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 1. Project guidelines
 
 ## 1.1 Project structure 
@@ -81,7 +135,7 @@ Resources file names are written in __lowercase_underscore__.
  
 Naming conventions for drawables:
 
-| Asset Type   | Prefix            |		Example          |
+| Asset Type   | Prefix            |		Example                  |
 |------------- | ----------------- |---------------------------- |
 | Action bar   | `ab_`             | `ab_stacked.9.png`          |
 | Button       | `btn_`	           | `btn_send_pressed.9.png`    |
