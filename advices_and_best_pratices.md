@@ -1,13 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Some advices, sources of content and best pratices tips for Android development](#some-advices-sources-of-content-and-best-pratices-tips-for-android-development)
-    - [Peoples and organizations to follow](#peoples-and-organizations-to-follow)
-    - [Pages about trending topics or available libraries in Android Development](#pages-about-trending-topics-or-available-libraries-in-android-development)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Some advices, sources of content and best pratices tips for Android development
 
 ### Peoples and organizations to follow
