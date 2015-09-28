@@ -2,10 +2,11 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [TL;DR](#tldr)
+- [0. Language](#0-language)
 - [1. Project guidelines](#1-project-guidelines)
   - [1.1 Project structure](#11-project-structure)
   - [1.2 Package structure](#12-package-structure)
-      - [App](#app)
   - [1.3 File naming](#13-file-naming)
     - [1.3.1 Class files](#131-class-files)
     - [1.3.1 Resources files](#131-resources-files)
@@ -16,7 +17,14 @@
       - [1.3.1.5 Styles](#1315-styles)
       - [1.3.1.6 Menu files](#1316-menu-files)
       - [1.3.1.7 Values files](#1317-values-files)
-  - [1.4 Dependencies](#14-dependencies)
+  - [1.4 XML style rules](#14-xml-style-rules)
+    - [1.4.1 Use self closing tags](#141-use-self-closing-tags)
+    - [1.4.2 Resources naming](#142-resources-naming)
+      - [1.4.2.1 ID naming](#1421-id-naming)
+      - [1.4.2.2 Strings](#1422-strings)
+      - [1.4.2.3 Styles and Themes](#1423-styles-and-themes)
+    - [1.4.3 Attributes ordering](#143-attributes-ordering)
+  - [1.5 Dependencies](#15-dependencies)
 - [2 Code guidelines](#2-code-guidelines)
   - [2.1 Java language rules](#21-java-language-rules)
     - [2.1.1 Don't ignore exceptions](#211-dont-ignore-exceptions)
@@ -34,23 +42,26 @@
     - [2.2.9 Logging guidelines](#229-logging-guidelines)
     - [2.2.10 Class member ordering](#2210-class-member-ordering)
     - [2.2.11 Parameter ordering in methods](#2211-parameter-ordering-in-methods)
-    - [2.2.13 String constants, naming and values](#2213-string-constants-naming-and-values)
+    - [2.2.12 String constants, naming and values](#2212-string-constants-naming-and-values)
     - [2.2.14 Arguments in Fragments and Activities](#2214-arguments-in-fragments-and-activities)
     - [2.2.15 Line length limit](#2215-line-length-limit)
       - [2.2.15.1 Line-wrapping strategies](#22151-line-wrapping-strategies)
     - [2.2.16 RxJava chains styling](#2216-rxjava-chains-styling)
-  - [2.3 XML style rules](#23-xml-style-rules)
-    - [2.3.1 Use self closing tags](#231-use-self-closing-tags)
-    - [2.3.2 Resources naming](#232-resources-naming)
-      - [2.3.2.1 ID naming](#2321-id-naming)
-      - [2.3.2.2 Strings (Must be reviewed!!!)](#2322-strings-must-be-reviewed)
-      - [2.3.2.3 Styles and Themes](#2323-styles-and-themes)
-    - [2.3.3 Attributes ordering](#233-attributes-ordering)
-  - [2.4 Tests style rules](#24-tests-style-rules)
-    - [2.4.1 Unit tests](#241-unit-tests)
-    - [2.4.2 Espresso tests](#242-espresso-tests)
+  - [2.3 Tests style rules](#23-tests-style-rules)
+    - [2.3.1 Unit tests](#231-unit-tests)
+    - [2.3.2 Espresso tests](#232-espresso-tests)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# TL;DR
+
+The most important sections are:
+
+...
+
+# 0. Language
+
+All code must be written in english language. It's a sin if you write half portuguese and half english code. This rule doesn't apply to application strings that are visible to the users.
 
 # 1. Project guidelines
 
@@ -96,8 +107,6 @@ new-structure
 ```
 
 ## 1.2 Package structure 
-
-#### App
 
 ```
 java
@@ -350,7 +359,98 @@ A good practise is to not include the word `menu` as part of the name because th
 
 Resource files in the values folder should be __plural__, e.g. `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
-## 1.4 Dependencies
+## 1.4 XML style rules
+
+### 1.4.1 Use self closing tags
+
+When an XML element doesn't have any content, you __must__ use self closing tags.
+
+This is good:
+
+```xml
+<TextView
+	android:id="@+id/text_view_profile"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content" />
+```
+        
+This is __bad__ :
+
+```xml
+<!-- Don't do this! -->
+<TextView
+    android:id="@+id/text_view_profile"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+</TextView>
+```
+
+### 1.4.2 Resources naming 
+
+Resource IDs and names are written in __lowercase_underscore__
+
+For all sections below, you can use an sufix or a prefix. But keep in mind to follow the convention for all project duration.
+
+#### 1.4.2.1 ID naming
+
+IDs should be sufixed/prefixed with the acronym of the element in lowercase underscore. For example:
+
+| Element            | Sufix             |
+| -----------------  | ----------------- |
+| `TextView`         | `_tv`             |
+| `EditText`         | `_edt`            |
+| `TextInputLayout`  | `_til`            |
+| `ImageView`        | `_iv`             | 
+| `Button`           | `_btn`            |
+| `Menu`             | `_menu`           |
+
+Image view example:
+
+```xml
+<ImageView
+    android:id="@+id/profile_iv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+```
+
+Menu example:
+
+```xml
+<menu>
+	<item
+        android:id="@+id/menu_done"
+        android:title="Done" />
+</menu>
+```
+
+#### 1.4.2.2 Strings
+
+String names start with a prefix that indentifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section then you should follow the rules below:
+
+
+| Prefix             | Description                           |
+| ------------------ | ------------------------------------- |
+| `error_`           | An error message                      |
+| `msg_`             | A regular information message         |       
+| `title_`           | A title, i.e. a dialog title          | 
+| `action_`          | An action such as "Save" or "Create"  |
+
+
+#### 1.4.2.3 Styles and Themes
+
+Unless the rest of resources, style names are written in __UpperCamelCase__.
+
+### 1.4.3 Attributes ordering 
+
+As a general rule you should try to group similar attributes together. A good way of ordering the most common attributes is:
+
+1. View Id
+2. Style
+3. Layout width and layout height
+4. Other layout attributes, sorted alphabetically
+5. Remaining attributes, sorted alphabetically
+
+## 1.5 Dependencies
 
 Try to avoid Maven dynamic dependency resolution, such as `io.reactivex:rxjava:1.0.+` as this may result in different in unstable builds or subtle, untracked differences in behavior between builds. But __never__ use dependency like `io.reactivex:rxjava:+` or `io.reactivex:rxjava:2.+`, they are too much instable. Dependencies like `io.reactivex:rxjava:1.0.+` as a little less problematic, but is not recommended.
 
@@ -570,16 +670,16 @@ Example:
 ```java
 public class MainActivity extends Activity {
 
-	private String mTitle;
+    private String mTitle;
     private TextView mTextViewTitle;
-    
-    public void setTitle(String title) {
-    	mTitle = title;
-    }
     
     @Override 
     public void onCreate() {
         ...
+    }
+    
+    public void setTitle(String title) {
+    	mTitle = title;
     }
     
     private void setUpView() {
@@ -593,7 +693,7 @@ public class MainActivity extends Activity {
 } 
 ```
 
-If your class is extending and __Android component__ such as an Activity or a Fragment, it is a good practise to order the override methods so that they __match the component's lifecycle__. For example, if you have an Activity that implements `onCreate()`, `onDestroy()`, `onPause()` and `onResume()`, then the correct order is:
+If your class is extending and __Android component__ such as an Activity or a Fragment, it is a good practise, __but not obligatory__, to order the override methods so that they __match the component's lifecycle__. For example, if you have an Activity that implements `onCreate()`, `onDestroy()`, `onPause()` and `onResume()`, then the correct order is:
 
 ```java
 public class MainActivity extends Activity {
@@ -630,7 +730,7 @@ public User loadUser(Context context, int userId);
 public void loadUserAsync(Context context, int userId, UserCallback callback);
 ```
 
-### 2.2.13 String constants, naming and values
+### 2.2.12 String constants, naming and values
 
 Many elements of the Android SDK such as `SharedPreferences`, `Bundle` or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
 
@@ -758,99 +858,10 @@ public Observable<Location> syncLocations() {
             });
 }
 ```
-	
-## 2.3 XML style rules
 
-### 2.3.1 Use self closing tags
+## 2.3 Tests style rules 
 
-When an XML element doesn't have any content, you __must__ use self closing tags.
-
-This is good:
-
-```xml
-<TextView
-	android:id="@+id/text_view_profile"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content" />
-```
-        
-This is __bad__ :
-
-```xml
-<!-- Don't do this! -->
-<TextView
-    android:id="@+id/text_view_profile"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
-</TextView>
-```
-
-
-### 2.3.2 Resources naming 
-
-Resource IDs and names are written in __lowercase_underscore__
-
-#### 2.3.2.1 ID naming
-
-IDs should be sufixed with the name of the element in lowercase underscore. For example:
-
-
-| Element            | Sufix             |
-| -----------------  | ----------------- |
-| `TextView`         | `_text_view`      |
-| `ImageView`        | `_image_view`     | 
-| `Button`           | `_button`         |   
-| `Menu`             | `_menu`           |
-
-Image view example:
-
-```xml
-<ImageView
-    android:id="@+id/image_profile"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
-```
-
-Menu example:
-
-```xml
-<menu>
-	<item
-        android:id="@+id/menu_done"
-        android:title="Done" />
-</menu>
-```
-
-#### 2.3.2.2 Strings (Must be reviewed!!!)
-
-String names start with a prefix that indentifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section then you should follow the rules below:
-
-
-| Prefix             | Description                           |
-| ------------------ | ------------------------------------- |
-| `error_`           | An error message                      |
-| `msg_`             | A regular information message         |       
-| `title_`           | A title, i.e. a dialog title          | 
-| `action_`          | An action such as "Save" or "Create"  |
-
-
-#### 2.3.2.3 Styles and Themes
-
-Unless the rest of resources, style names are written in __UpperCamelCase__.
-
-### 2.3.3 Attributes ordering 
-
-As a general rule you should try to group similar attributes together. A good way of ordering the most common attributes is:
-
-1. View Id
-2. Style
-3. Layout width and layout height
-4. Other layout attributes, sorted alphabetically
-5. Remaining attributes, sorted alphabetically
-
-## 2.4 Tests style rules 
-
-### 2.4.1 Unit tests 
+### 2.3.1 Unit tests 
 
 The test classes should match the name of the class that the tests are targeting followed by `Test`. For example, If we create a test class that contains test for the `DataManager`, we should name it `DataManagerTest`.
 
@@ -859,7 +870,7 @@ The name of the tests must start with `should` followed by the expected behaviou
 - `shouldLoadUserData()`
 - `shouldThrowExceptionWhenLoadingUser()`
 
-### 2.4.2 Espresso tests
+### 2.3.2 Espresso tests
 
 Every Espresso test class must target an Activity, therefore the name should match the name of the targeted Activity followed by `Test`, e.g. `SignInActivityTest`
 
