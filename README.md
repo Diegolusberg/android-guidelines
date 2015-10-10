@@ -6,3 +6,4 @@ This Android guideline was forked from __ribot__ and is under heavy contruction.
 - [Architecture Guidelines](architecture_guidelines/android_architecture.md) 
 - [Libraries](android_libraries.md)
 - [Advices and best pratices](advices_and_best_pratices.md)
+- [Build Process](build_process.md)

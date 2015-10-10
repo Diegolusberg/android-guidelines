@@ -14,7 +14,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ###### Legend:
- - All libraries marked with ![Recommended](./assets/recommended.png) are recommended among similars, because they have been or are used in our projects. Nothing prevents you from using others alternatives, but is too much easy to ask for help with already known libraries.
+ - All libraries marked with ![Recommended](./assets/recommended.png) are recommended among the similars, because they have been or are used in our projects. Nothing prevents you from using others alternatives, but is too much easy to ask for help with already known libraries.
 
 # Android Libraries
 
@@ -22,7 +22,7 @@ There are a great variety of libraries to speed up the development. Some of then
 
 ### BAAS
 - ![Recommended](./assets/recommended.png) [Parse](https://www.parse.com/) is a simple solution as a Back-end for short projects.
-- [Firebase](https://www.firebase.com/) for realtime communication.
+- [Firebase](https://www.firebase.com/) for realtime storage, communication and synchronization.
 
 ### Architecture
 - [RxJava](https://github.com/ReactiveX/RxJava) & [RxAndroid](https://github.com/ReactiveX/RxAndroid) for Reactive programming.

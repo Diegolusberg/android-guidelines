@@ -2,6 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+          - [Legend:](#legend)
 - [TL;DR](#tldr)
 - [0. Language](#0-language)
 - [1. Project guidelines](#1-project-guidelines)
@@ -53,13 +54,21 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+######Legend:
+ - ![Required](./assets/required.png) means that a section is required.
+ - ![Optional](./assets/optional.png) means that a section is optional.
+
 # TL;DR
 
 The most important sections are:
 
-...
+ - [1.3 File naming](#13-file-naming)
+ - [1.4.2 Resources naming](#142-resources-naming)
+ - [1.5 Dependencies](#15-dependencies)
+ - [2.2 Java style rules](#22-java-style-rules)
 
 # 0. Language
+![Required](./assets/required.png)
 
 All code must be written in english language. It's a sin if you write half portuguese and half english code. This rule doesn't apply to application strings that are visible to the users.
 
@@ -106,7 +115,8 @@ new-structure
 └─ settings.gradle
 ```
 
-## 1.2 Package structure 
+## 1.2 Package structure
+![Required](./assets/required.png)
 
 ```
 java
@@ -129,18 +139,22 @@ java
    └─ util
 ```
 
-## 1.3 File naming 
+## 1.3 File naming
 
 ### 1.3.1 Class files
+![Required](./assets/required.png)
+
 Class names are written in [UpperCamelCase](http://en.wikipedia.org/wiki/CamelCase). 
 
 For classes that extend an Android component, the name of the class should end with the name of the component; for example: `SignInActivity`, `SignInFragment`, `ImageUploaderService`, `ChangePasswordDialog`.
 
 ### 1.3.1 Resources files
+![Required](./assets/required.png)
 
 Resources file names are written in __lowercase_underscore__. 
 
 #### 1.3.1.1 Drawable files
+![Required](./assets/required.png)
  
 Naming conventions for drawables:
 
@@ -178,6 +192,7 @@ Naming conventions for selector states:
 
 
 #### 1.3.1.2 Layout files
+![Required](./assets/required.png)
 
 Layout files should match the name of the Android components that they are intended for but moving the top level component name to the beginning. For example, if we are creating a layout for the `SignInActivity`, the name of the layout file should be `activity_sign_in.xml`.
 
@@ -194,6 +209,7 @@ Layout files should match the name of the Android components that they are inten
 | Custom View layout| `UserView`             | `view_user.xml`                                    |
 
 #### 1.3.1.3 Avoid deep layout hierarchy
+![Optional](./assets/optional.png)
 
 Avoid a deep hierarchy of views. Sometimes you might be tempted to just add yet another LinearLayout, to be able to accomplish an arrangement of views. This kind of situation may occur:
 
@@ -236,13 +252,15 @@ A couple of problems may occur. You might experience performance problems, becau
 
 Therefore, try to keep your views hierarchy as flat as possible: learn how to use RelativeLayout, how to optimize your layouts and to use the <merge> tag.
 
-Another recomendation is to __NOT USE__ `RelativeLayout` as an wrapper to add some padding or backgroud or anything. He is very complex just to wrap a view. Use `FrameLayout` instead.
+Another recomendation is to __NOT USE__ `RelativeLayout` as an wrapper to add some padding or backgroud or anything. He is very complex just to wrap a view (2 layout passes to render content). Use `FrameLayout` instead.
 
 #### 1.3.1.4 Use designtime attributes
+![Optional](./assets/optional.png)
 
 Rather than hard coding `android:text`, consider using [Designtime](http://tools.android.com/tips/layout-designtime-attributes) attributes (e.g: `tools:text`, `tools:background`, `tools:minHeight`, `tools:src` and etc...) available for Android Studio. There are some limitations, but major attributes can be used. It's very helpfull for prototyping and layout.
 
 #### 1.3.1.5 Styles
+![Required](./assets/required.png)
 
 As a rule of thumb, attributes `android:layout_****` should be defined in the layout XML, while other attributes `android:****` should stay in a style XML. This rule has exceptions, but in general works fine. The idea is to keep only layout (positioning, margin, sizing) and content attributes in the layout files, while keeping all appearance details (colors, padding, font) in styles files.
 
@@ -299,7 +317,7 @@ We highly suggest a hierarchy naming convention, just like:
 </style>
 ```
 
-__or maybe__ with underscore's (which is better?)
+__or maybe__ with underscore's
 
 ```xml
 <style name="Base_AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -349,19 +367,22 @@ The attribute `parent` means explicity inheritance, and `.` means implicitly inh
 
 This video [Using Styles and Themes Without Going Crazy](https://www.youtube.com/watch?v=Jr8hJdVGHAk) of Daniel Lew will help alot with some tips about the power of styles.
 
-#### 1.3.1.6 Menu files  
+#### 1.3.1.6 Menu files
+![Required](./assets/required.png)
 
 Similar to layout files, menu files should match the name of the component. For example, if we are defining a menu file that is going to be use in the `UserActivity`, then the name of the file should be `activity_user.xml`
 
 A good practise is to not include the word `menu` as part of the name because these files are already located in directory called menu.
 
 #### 1.3.1.7 Values files
+![Required](./assets/required.png)
 
 Resource files in the values folder should be __plural__, e.g. `strings.xml`, `styles.xml`, `colors.xml`, `dimens.xml`, `attrs.xml`
 
 ## 1.4 XML style rules
 
 ### 1.4.1 Use self closing tags
+![Optional](./assets/optional.png)
 
 When an XML element doesn't have any content, you __must__ use self closing tags.
 
@@ -385,13 +406,15 @@ This is __bad__ :
 </TextView>
 ```
 
-### 1.4.2 Resources naming 
+### 1.4.2 Resources naming
+![Required](./assets/required.png)
 
 Resource IDs and names are written in __lowercase_underscore__
 
 For all sections below, you can use an sufix or a prefix. But keep in mind to follow the convention for all project duration.
 
 #### 1.4.2.1 ID naming
+![Required](./assets/required.png)
 
 IDs should be sufixed/prefixed with the acronym of the element in lowercase underscore. For example:
 
@@ -424,6 +447,7 @@ Menu example:
 ```
 
 #### 1.4.2.2 Strings
+![Optional](./assets/optional.png)
 
 String names start with a prefix that indentifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section then you should follow the rules below:
 
@@ -437,10 +461,12 @@ String names start with a prefix that indentifies the section they belong to. Fo
 
 
 #### 1.4.2.3 Styles and Themes
+![Required](./assets/required.png)
 
 Unless the rest of resources, style names are written in __UpperCamelCase__.
 
-### 1.4.3 Attributes ordering 
+### 1.4.3 Attributes ordering
+![Optional](./assets/optional.png)
 
 As a general rule you should try to group similar attributes together. A good way of ordering the most common attributes is:
 
@@ -451,12 +477,14 @@ As a general rule you should try to group similar attributes together. A good wa
 5. Remaining attributes, sorted alphabetically
 
 ## 1.5 Dependencies
+![Required](./assets/required.png)
 
 Try to avoid Maven dynamic dependency resolution, such as `io.reactivex:rxjava:1.0.+` as this may result in different in unstable builds or subtle, untracked differences in behavior between builds. But __never__ use dependency like `io.reactivex:rxjava:+` or `io.reactivex:rxjava:2.+`, they are too much instable. Dependencies like `io.reactivex:rxjava:1.0.+` as a little less problematic, but is not recommended.
 
 The use of static versions such as `2.1.1` helps create a more stable, predictable and repeatable development environment. The process to update these versions may be boring, going one on one to your dependencies to find the latest version. But this process makes your app much more stable as said before.
 
-# 2 Code guidelines 
+# 2 Code guidelines
+![Optional](./assets/optional.png)
 
 ## 2.1 Java language rules
 
@@ -859,7 +887,8 @@ public Observable<Location> syncLocations() {
 }
 ```
 
-## 2.3 Tests style rules 
+## 2.3 Tests style rules
+![Optional](./assets/optional.png)
 
 ### 2.3.1 Unit tests 
 
