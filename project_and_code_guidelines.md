@@ -2,7 +2,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-          - [Legend:](#legend)
 - [TL;DR](#tldr)
 - [0. Language](#0-language)
 - [1. Project guidelines](#1-project-guidelines)
