@@ -23,7 +23,7 @@ As we use `gradle` as the main tool to manage dependencies, build and deploy our
 
 We use generated `versionName` and `versionCode` based on `git` tags and commits:
 
-```
+```gradle
 def getVersionCode = { ->
     try {
         def cmd = 'git rev-list --count HEAD'
@@ -47,7 +47,7 @@ def completeVersion = getVersionName() + "." + getVersionCode()
 
 And inside `android` configuration block:
 
-```
+```gradle
 defaultConfig {
     versionCode getVersionCode() ?: 1
     versionName completeVersion ?: 1
@@ -62,7 +62,7 @@ Use of `buildTypes` to configure build based application wide parameters.
 
 As part of `gradle`, is a good pratice to use `buildTypes` to configure proguard, minification and signing too.
 
-```
+```gradle
 buildTypes {
     def BOOLEAN = "boolean"
     def TRUE = "true"
@@ -93,7 +93,7 @@ buildTypes {
 
 Use of `productFlavors` to configure build based environment wide parameters:
 
-```
+```gradle
 productFlavors {
     def STRING = "String"
 
@@ -126,6 +126,137 @@ productFlavors {
     }
 }
 ```
+
+### 1.1.4 Using ManifestPlaceholders
+
+Sometimes we need to change some properties, values or id's on AndroidManifest from our gradle build file.
+
+You can declare an placeholder in the AndroidManifest with brackets notation, e.g: ```{variableName}```
+
+An real use case may be:
+
+````xml
+<receiver android:name="com.helabs.example.GCMReceiver"
+          android:permission="com.google.android.c2dm.permission.SEND">
+    <intent-filter>
+        <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+        <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+        <category android:name="{appId}" />
+    </intent-filter>
+</receiver>
+```
+
+And the __appId__ binding and declaration as follow in your __build.gradle__ file:
+
+```gradle
+def final manifestPlaceholders = [
+    "appId": "com.helabs.example"
+];
+
+defaultConfig {
+    // ...
+    manifestPlaceholders = manifestPlaceholders
+}
+```
+
+If you want to configure different manifest placeholders for different configurations, such as build types or product flavors, we must explore more of groovy language:
+
+```gradle
+def final manifestPlaceholders = [
+    "debug": [
+        "appId": "com.helabs.example.debug"
+    ],
+    "release": [
+        "appId": "com.helabs.example.release"
+    ],
+    "development": [
+        "appId": "com.helabs.example.development"
+    ],
+    "production": [
+        "appId": "com.helabs.example.production"
+    ]
+];
+
+// Based on build types
+debug {
+    manifestPlaceholders = manifestPlaceholders.debug
+}
+
+release {
+    manifestPlaceholders = manifestPlaceholders.release
+}
+
+// Or based on product flavors
+
+productFlavors {
+    development {
+        manifestPlaceholders = manifestPlaceholders.development
+    }
+  
+  // And so on...
+}
+````
+
+### 1.1.5 Resource Values
+
+As an alternative to Manifest placeholders, we can generate some resource values dynamically right from our gradle build file. It has different use cases, but is very useful too.
+
+A very common use case is to define the `facebook_app_id` resource, which can be different based on your need.
+
+The syntax is the defined below:
+
+```gradle
+android {
+
+    //...
+
+    defaultConfig {
+        // ...
+        // A default value must be defined, or an error will occur
+        resValue "string", "facebook_app_id", ""   
+    }
+    
+    debug {
+        resValue "string", "facebook_app_id", "xyz"
+    }
+    
+    release {
+        resValue "string", "facebook_app_id", "klmnop"
+    }
+```
+
+We can access it's value using the common notation: ```@string/facebook_app_id```
+
+### 1.1.6 Removing unused resource files
+
+A simple tip, to reduce your apk size is to only include resources for languages that your app is translated. Some libraries included on the apk (in special google play services and support libraries) have resources for languages that the application is not expected to be localized, and usually increase the apk size for no reason.
+
+On gradle build file, we can restrict what languages the resource files will be included on apk file using `resConfigs` property:
+
+```gradle
+android {
+    // ...
+
+    defaultConfig {
+        //...
+
+        resConfigs "en", "pt-rBR"
+    }
+```
+
+### 1.1.7 Proguard
+
+It's very important to use Proguard in release builds. Not just for drastic apk size and dex count reductions, but for code obfuscation in case of decompilers usage. Using proguard __DOES NOT__ means that your application will be secured, but improves a little.
+
+But is very important to heavly test the app after running proguard, or runtime errors may occur. If some library or piece of code use Reflection, some proguard rules may be added to prevent obfuscation of these used classes on Reflection.
+
+To prevent any runtime error, it's recommended to starting using proguard on the beginning of the app development and test it frequently.
+
+Many libraries packaged on `aar` files already include proguard rules, but sometimes we need to manually include such rules on our proguard rules file. If you use proguard on release builds, check out for proguard rules when including third-party libraries to your project.
+
+A good resource for proguard rules is [android-proguard-snippets](https://github.com/krschultz/android-proguard-snippets).
+Some rules may be outdated, so, the better source of updated rules are always the library repository.
 
 # 2. Distribution
 
