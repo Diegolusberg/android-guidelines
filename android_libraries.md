@@ -20,14 +20,14 @@
 
 # Android Libraries
 
-Adding a third-party library to your project, think that you are doing a high commitment with this library. So, think twice before adding it and starting using. Some advices to choose a good library:
+Before adding a third-party library to your project, you are doing a high commitment with this library. So, think twice before adding and starting using it. The advices below, assist to choose a good library:
  
  - Open-source
    - Open-source libraries has too many advantages over closed ones to list here.
- - Focused to resolve a unique problem
-   - Try to avoid all-in-one libraries, instead, choose smaller libraries to resolve each problem. Choosing a bloated library, if you face any problem, will be harder to fix or replace it.
+ - Focused to resolve a specific problem
+   - Try to avoid all-in-one libraries. Instead, choose smaller libraries to resolve each problem you have. Choosing a big library can be a bad choice. In case any problem, will be very hard to replace it, when very coupled to the app, or fix it.
  - Lower dex count
-   - If you can't decide what library choose with a set of libraries, try to compare the dexcount of them. Because it's easy to include libraries to your project, the dexcount of your app can increase very fast, and can be a problem in a long term vision. When choosing a library, use this [tool](http://www.methodscount.com) as a comparator before including it in your project
+   - If you can't decide what library choose with a set of libraries for a single usage, try to compare the dexcount of them. Because it's easy to include libraries to your project, the dexcount of your app can increase very fast, and can be a problem in long term. When choosing a library, use this [tool](http://www.methodscount.com) as a comparator before including it in your project
  - Look at some Github metrics:
    - Opened Issues number (Closed issues number is a good tip too)
    - Number of stars
