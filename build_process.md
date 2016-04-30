@@ -7,6 +7,10 @@
     - [1.1.1 `VersionName` and `VersionCode`](#111-versionname-and-versioncode)
     - [1.1.2 `buildTypes`](#112-buildtypes)
     - [1.1.3 `productFlavors`](#113-productflavors)
+    - [1.1.4 Using Manifest placeholders](#114-using-manifestplaceholders)
+    - [1.1.5 Resource values](#115-resource-values)
+    - [1.1.6 Removing unused resource files](#116-removing-unused-resource-files)
+    - [1.1.7 Proguard](#117-proguard)
 - [2. Distribution](#2-distribution)
   - [2.1 Google Play Alpha/Beta](#21-google-play-alphabeta)
   - [2.2 Testfairy](#22-testfairy)
@@ -127,7 +131,7 @@ productFlavors {
 }
 ```
 
-### 1.1.4 Using ManifestPlaceholders
+### 1.1.4 Using Manifest placeholders
 
 Sometimes we need to change some properties, values or id's on AndroidManifest from our gradle build file.
 
@@ -198,7 +202,7 @@ productFlavors {
 }
 ````
 
-### 1.1.5 Resource Values
+### 1.1.5 Resource values
 
 As an alternative to Manifest placeholders, we can generate some resource values dynamically right from our gradle build file. It has different use cases, but is very useful too.
 
