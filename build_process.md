@@ -26,29 +26,19 @@ We use generated `versionName` and `versionCode` based on `git` tags and commits
 ```
 def getVersionCode = { ->
     try {
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'rev-list', '--count', 'HEAD'
-            standardOutput = stdout
-        }
-        return Integer.parseInt(stdout.toString().trim())
-    } catch (s) {
-        println s
-        return 1
+        def cmd = 'git rev-list --count HEAD'
+        cmd.execute().text.trim().toInteger()
+    } catch (ignored) {
+        1
     }
 }
 
 def getVersionName = { ->
     try {
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'describe', '--tags', '--abbrev=0'
-            standardOutput = stdout
-        }
-        return stdout.toString().trim()
-    } catch (s) {
-        println s
-        return "1.0"
+        def cmd = 'git describe --tags --abbrev=0'
+        cmd.execute().text.trim()
+    } catch (ignored) {
+        "1.0"
     }
 }
 
