@@ -32,21 +32,20 @@
     - [2.1.3 Don't use finalizers](#213-dont-use-finalizers)
     - [2.1.4 Fully qualify imports](#214-fully-qualify-imports)
   - [2.2 Java style rules](#22-java-style-rules)
-    - [2.2.1 Fields definition and naming](#221-fields-definition-and-naming)
-    - [2.2.3 Treat acronyms as words](#223-treat-acronyms-as-words)
-    - [2.2.4 Use spaces for indentation](#224-use-spaces-for-indentation)
-    - [2.2.5 Use standard brace style](#225-use-standard-brace-style)
-    - [2.2.6 Use standard Java annotations](#226-use-standard-java-annotations)
-    - [2.2.7 Limit variable scope](#227-limit-variable-scope)
-    - [2.2.8 Order import statements](#228-order-import-statements)
-    - [2.2.9 Logging guidelines](#229-logging-guidelines)
-    - [2.2.10 Class member ordering](#2210-class-member-ordering)
-    - [2.2.11 Parameter ordering in methods](#2211-parameter-ordering-in-methods)
-    - [2.2.12 String constants, naming and values](#2212-string-constants-naming-and-values)
-    - [2.2.14 Arguments in Fragments and Activities](#2214-arguments-in-fragments-and-activities)
-    - [2.2.15 Line length limit](#2215-line-length-limit)
-      - [2.2.15.1 Line-wrapping strategies](#22151-line-wrapping-strategies)
-    - [2.2.16 RxJava chains styling](#2216-rxjava-chains-styling)
+    - [2.2.1 Treat acronyms as words](#221-treat-acronyms-as-words)
+    - [2.2.2 Use spaces for indentation](#222-use-spaces-for-indentation)
+    - [2.2.3 Use standard brace style](#223-use-standard-brace-style)
+    - [2.2.4 Use standard Java annotations](#224-use-standard-java-annotations)
+    - [2.2.5 Limit variable scope](#225-limit-variable-scope)
+    - [2.2.6 Order import statements](#226-order-import-statements)
+    - [2.2.8 Logging guidelines](#228-logging-guidelines)
+    - [2.2.9 Class member ordering](#229-class-member-ordering)
+    - [2.2.10 Parameter ordering in methods](#2210-parameter-ordering-in-methods)
+    - [2.2.11 String constants, naming and values](#2211-string-constants-naming-and-values)
+    - [2.2.12 Arguments in Fragments and Activities](#2212-arguments-in-fragments-and-activities)
+    - [2.2.13 Line length limit](#2213-line-length-limit)
+      - [2.2.13.1 Line-wrapping strategies](#22131-line-wrapping-strategies)
+    - [2.2.14 RxJava chains styling](#2214-rxjava-chains-styling)
   - [2.3 Tests style rules](#23-tests-style-rules)
     - [2.3.1 Unit tests](#231-unit-tests)
     - [2.3.2 Espresso tests](#232-espresso-tests)
@@ -73,7 +72,7 @@ All code must be written in english language. It's a sin if you write half portu
 
 # 1. Project guidelines
 
-## 1.1 Project structure 
+## 1.1 Project structure
 
 New projects should follow the Android Gradle project structure that is defined on the [Android Gradle plugin user guide](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure).
 
@@ -132,7 +131,7 @@ java
    │  └─ instagram (optional)
    ├─ receiver
    ├─ model
-   ├─ rx/bus/dagger/etc... (or any package for components created for any sdk/framework or architecture library) 
+   ├─ rx/bus/dagger/etc... (or any package for components created for any sdk/framework or architecture library)
    ├─ view (for any Custom View that receives any model object and bind the data to it's children, e.g: UserAvatarView, PostView, etc...)
    ├─ widget (for any widget that can be reused, e.g: FancyButton, CustomFAB, etc...)
    └─ util
@@ -154,7 +153,7 @@ Resources file names are written in __lowercase_underscore__.
 
 #### 1.3.1.1 Drawable files
 ![Required](./assets/required.png)
- 
+
 Naming conventions for drawables:
 
 | Asset Type   | Prefix            |		Example              |
@@ -172,7 +171,7 @@ Naming conventions for drawables:
 Naming conventions for icons (taken from [Android iconography guidelines](http://developer.android.com/design/style/iconography.html)):
 
 | Asset Type                      | Prefix             | Example                      |
-| ------------------------------- | ------------------ | ---------------------------- | 
+| ------------------------------- | ------------------ | ---------------------------- |
 | Icons                           | `ic_`              | `ic_star.png`                |
 | Launcher icons                  | `ic_launcher`      | `ic_launcher_calendar.png`   |
 | Menu icons and Action Bar icons | `ic_menu`          | `ic_menu_archive.png`        |
@@ -242,7 +241,7 @@ Avoid a deep hierarchy of views. Sometimes you might be tempted to just add yet 
         </LinearLayout>
 
     </RelativeLayout>
-    
+
 </LinearLayout>
 ```
 
@@ -535,29 +534,7 @@ See more info [here](https://source.android.com/source/code-style.html#fully-qua
 
 ## 2.2 Java style rules
 
-### 2.2.1 Fields definition and naming
-
-Fields should be defined at the __top of the file__ and they should follow the naming rules listed below.
-
-* Private, non-static field names start with __m__.
-* Private, static field names start with __s__.
-* Other fields start with a lower case letter.
-* Static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
-
-Example:
-
-```java
-public class MyClass {
-    public static final int SOME_CONSTANT = 42;
-    public int publicField;
-    private static MyClass sSingleton;
-    int mPackagePrivate;
-    private int mPrivate;
-    protected int mProtected;
-}
-```
-
-### 2.2.3 Treat acronyms as words
+### 2.2.1 Treat acronyms as words
 
 | Good             | Bad              |
 | ---------------- | ---------------- |
@@ -566,7 +543,7 @@ public class MyClass {
 | `String url`     | `String URL`     |
 | `long id`        | `long ID`        |
 
-### 2.2.4 Use spaces for indentation
+### 2.2.2 Use spaces for indentation
 
 Use __4 space__ indents for blocks:
 
@@ -583,7 +560,7 @@ Instrument i =
         someLongExpression(that, wouldNotFit, on, one, line);
 ```
 
-### 2.2.5 Use standard brace style
+### 2.2.3 Use standard brace style
 
 Braces go on the same line as the code before them.
 
@@ -615,8 +592,8 @@ This is __bad__:
 if (condition)
     body();  // bad!
 ```
-        
-### 2.2.6 Use standard Java annotations
+
+### 2.2.4 Use standard Java annotations
 
 According to the Android code style guide, the standard practices for some of the predefined annotations in Java are:
 
@@ -626,14 +603,13 @@ According to the Android code style guide, the standard practices for some of th
 
 More information about annotation guidelines can be found [here](http://source.android.com/source/code-style.html#use-standard-java-annotations).
 
-
-### 2.2.7 Limit variable scope
+### 2.2.5 Limit variable scope
 
 _The scope of local variables should be kept to a minimum (Effective Java Item 29). By doing so, you increase the readability and maintainability of your code and reduce the likelihood of error. Each variable should be declared in the innermost block that encloses all uses of the variable._
 
 _Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#limit-variable-scope))
 
-### 2.2.8 Order import statements
+### 2.2.6 Order import statements
 
 If you are using an IDE such as Android Studio, you don't have to worry about this because your IDE is already obeying these rules. If not, have a look below.
 
@@ -651,7 +627,7 @@ To exactly match the IDE settings, the imports should be:
 
 More info [here](https://source.android.com/source/code-style.html#limit-variable-scope)
 
-### 2.2.9 Logging guidelines
+### 2.2.8 Logging guidelines
 
 Use the logging methods provided by the `Log` class to print out error messages or other information that may be useful for developers to identify issues:
 
@@ -666,7 +642,7 @@ As a general rule, we use the class name as tag and we define it as a `static fi
 ```java
 public class MyClass {
     private static final String TAG = MyClass.class.getSimpleName();
-    
+
     public myMethod() {
         Log.e(TAG, "My error message");
     }
@@ -681,7 +657,7 @@ To only show logs on debug builds:
 if (BuildConfig.DEBUG) Log.d(TAG, "The value of x is " + x);
 ```
 
-### 2.2.10 Class member ordering
+### 2.2.9 Class member ordering
 
 There is no single correct solution for this but using a __logical__ and __consistent__ order will improve code learnability and readability. It is recommendable to use the following order:
 
@@ -700,22 +676,22 @@ public class MainActivity extends Activity {
 
     private String mTitle;
     private TextView mTextViewTitle;
-    
+
     @Override
     public void onCreate() {
         ...
     }
-    
+
     public void setTitle(String title) {
     	mTitle = title;
     }
-    
+
     private void setUpView() {
         ...
     }
-    
+
     static class AnInnerClass {
-    
+
     }
 
 }
@@ -729,20 +705,20 @@ public class MainActivity extends Activity {
 	//Order matches Activity lifecycle
     @Override
     public void onCreate() {}
-    
+
     @Override
     public void onResume() {}
-    
+
     @Override
     public void onPause() {}
-    
+
     @Override
     public void onDestroy() {}
 
 }
 ```
 
-### 2.2.11 Parameter ordering in methods
+### 2.2.10 Parameter ordering in methods
 
 When programming for Android, it is quite common to define methods that take a `Context`. If you are writing a method like this, then the __Context__ must be the __first__ parameter.
 
@@ -758,7 +734,7 @@ public User loadUser(Context context, int userId);
 public void loadUserAsync(Context context, int userId, UserCallback callback);
 ```
 
-### 2.2.12 String constants, naming and values
+### 2.2.11 String constants, naming and values
 
 Many elements of the Android SDK such as `SharedPreferences`, `Bundle` or `Intent` use a key-value pair approach so it's very likely that even for a small app you end up having to write a lot of String constants.
 
@@ -787,7 +763,7 @@ static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
 static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 ```
 
-### 2.2.14 Arguments in Fragments and Activities
+### 2.2.12 Arguments in Fragments and Activities
 
 When data is passed into an `Activity `or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
 
@@ -803,7 +779,7 @@ public static Intent getStartIntent(Context context, User user) {
 }
 ```
 
-For Fragments it is named `newInstance()` and it handles the creation of the Fragment with the right arguments. 
+For Fragments it is named `newInstance()` and it handles the creation of the Fragment with the right arguments.
 
 ```java
 public static UserFragment newInstance(User user) {
@@ -819,7 +795,7 @@ __Note 1__: These methods should go at the top of the class before `onCreate()`
 
 __Note 2__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
 
-### 2.2.15 Line length limit
+### 2.2.13 Line length limit
 
 Code lines should not exceed __100 characters__. If the line is longer than this limit there are usually two options to reduce its length:
 
@@ -831,7 +807,7 @@ There are two __exceptions__ where it is possible to have lines longer than 100:
 * Lines that are not possible to split, e.g. long URLs in comments.
 * `package` and `import` statements.
 
-#### 2.2.15.1 Line-wrapping strategies
+#### 2.2.13.1 Line-wrapping strategies
 
 There isn't an exact formula that explains how to line-wrap and quite often different solutions are valid. However there are a few rules that can be applied to common cases.
 
@@ -883,7 +859,7 @@ loadPicture(context,
         "Title of the picture");
 ```
 
-### 2.2.16 RxJava chains styling 
+### 2.2.14 RxJava chains styling
 
 Rx chains of operators require line-wrapping. Every operator must go in a new line and the line should be broken before the `.`
 
