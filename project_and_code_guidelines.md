@@ -534,7 +534,30 @@ See more info [here](https://source.android.com/source/code-style.html#fully-qua
 
 ## 2.2 Java style rules
 
-### 2.2.1 Treat acronyms as words
+### 2.2.1 Fields definition and naming
+
+Fields should be defined at the __top of the file__ and they should follow the naming rules listed below.
+
+* <del>Private, non-static field names start with __m__.</del>
+* <del>Private, static field names start with __s__.</del>
+* Do not use __m__ or __s__ prefix for field names.
+* <del>Other</del> fields start with a lower case letter.
+* Static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
+
+Example:
+
+```java
+public class MyClass {
+  public static final int SOME_CONSTANT = 42;
+  public int publicField;
+  private static MyClass singleton;
+  int packagePrivate;
+  private int privateInt;
+  protected int protectedInt;
+}
+```
+
+### 2.2.2 Treat acronyms as words
 
 | Good             | Bad              |
 | ---------------- | ---------------- |
@@ -543,7 +566,7 @@ See more info [here](https://source.android.com/source/code-style.html#fully-qua
 | `String url`     | `String URL`     |
 | `long id`        | `long ID`        |
 
-### 2.2.2 Use spaces for indentation
+### 2.2.3 Use spaces for indentation
 
 Use __4 space__ indents for blocks:
 
@@ -560,7 +583,7 @@ Instrument i =
         someLongExpression(that, wouldNotFit, on, one, line);
 ```
 
-### 2.2.3 Use standard brace style
+### 2.2.4 Use standard brace style
 
 Braces go on the same line as the code before them.
 
@@ -593,7 +616,7 @@ if (condition)
     body();  // bad!
 ```
 
-### 2.2.4 Use standard Java annotations
+### 2.2.5 Use standard Java annotations
 
 According to the Android code style guide, the standard practices for some of the predefined annotations in Java are:
 
@@ -603,13 +626,13 @@ According to the Android code style guide, the standard practices for some of th
 
 More information about annotation guidelines can be found [here](http://source.android.com/source/code-style.html#use-standard-java-annotations).
 
-### 2.2.5 Limit variable scope
+### 2.2.6 Limit variable scope
 
 _The scope of local variables should be kept to a minimum (Effective Java Item 29). By doing so, you increase the readability and maintainability of your code and reduce the likelihood of error. Each variable should be declared in the innermost block that encloses all uses of the variable._
 
 _Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#limit-variable-scope))
 
-### 2.2.6 Order import statements
+### 2.2.7 Order import statements
 
 If you are using an IDE such as Android Studio, you don't have to worry about this because your IDE is already obeying these rules. If not, have a look below.
 
