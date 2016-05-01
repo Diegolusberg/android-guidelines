@@ -74,7 +74,7 @@ There are a great variety of libraries to speed up the development. Some of then
 - ![Recommended](./assets/recommended.png) [LeakCanary](https://github.com/square/leakcanary) to keep tracking over any memory leak that can be happening.
 - ![Recommended](./assets/recommended.png) [Stetho](http://facebook.github.io/stetho/) is a great tool to debug some informations about app in browser, an experience closer than debugging the front-end of a web application.
 
-  The best part of __Stetho__ is the ability to inspect the full application backstack view hierarchy, in a xml format and read-only access to views properties, and all activity's properties. It also suport the Network request inspection, for both UrlConnection and OkHttp. Another great feature is the hability to inspect SQLite databases, with the possibility to perform any query to read or manipulate the data if needed.
+  The best part of __Stetho__ is the ability to inspect the full application backstack and view hierarchy, in a xml format and read-only access to views properties, and all activity's properties. It also suport the Network request inspection, for both UrlConnection and OkHttp. Another great feature is the hability to inspect SQLite databases, with the possibility to perform any query to read or manipulate the data if needed.
 
 ### Views
 - [Butterknife](http://jakewharton.github.io/butterknife/) as a lightweight solution for views, resources and events handlers dependency injection.
