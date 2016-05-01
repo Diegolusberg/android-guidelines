@@ -7,10 +7,11 @@
     - [1.1.1 `VersionName` and `VersionCode`](#111-versionname-and-versioncode)
     - [1.1.2 `buildTypes`](#112-buildtypes)
     - [1.1.3 `productFlavors`](#113-productflavors)
-    - [1.1.4 Using Manifest placeholders](#114-using-manifestplaceholders)
+    - [1.1.4 Using Manifest placeholders](#114-using-manifest-placeholders)
     - [1.1.5 Resource values](#115-resource-values)
     - [1.1.6 Removing unused resource files](#116-removing-unused-resource-files)
     - [1.1.7 Proguard](#117-proguard)
+    - [1.1.8 Multidex](#118-multidex)
 - [2. Distribution](#2-distribution)
   - [2.1 Google Play Alpha/Beta](#21-google-play-alphabeta)
   - [2.2 Testfairy](#22-testfairy)
@@ -251,7 +252,7 @@ android {
 
 ### 1.1.7 Proguard
 
-It's very important to use Proguard in release builds. Not just for drastic apk size and dex count reductions, but for code obfuscation in case of decompilers usage. Using proguard __DOES NOT__ means that your application will be secured, but improves a little.
+It's very important to use Proguard in release builds. Not just for drastic apk size and consequently dex count reductions, but for code obfuscation in case of decompilers usage. Using proguard __DOES NOT__ means that your application will be secured, but is better than nothing.
 
 But is very important to heavly test the app after running proguard, or runtime errors may occur. If some library or piece of code use Reflection, some proguard rules may be added to prevent obfuscation of these used classes on Reflection.
 
@@ -261,6 +262,20 @@ Many libraries packaged on `aar` files already include proguard rules, but somet
 
 A good resource for proguard rules is [android-proguard-snippets](https://github.com/krschultz/android-proguard-snippets).
 Some rules may be outdated, so, the better source of updated rules are always the library repository.
+
+### 1.1.8 Multidex
+
+The process of import and use libraries is to easy when using gradle or maven, so, is very common to reach the 65k dexcount limit when developing complex apps. Just including the support libraries and other *must have libraries* we reach 30 ~ 40k dexcount pretty fast.
+
+The easiest solution is to use MultiDex in the app. But for versions below 21, it heavly degrades the app build and startup time and often increase the apk size, not counting with other limitations that [Dalvik has](http://developer.android.com/intl/pt-br/tools/building/multidex.html#limitations). Which is bad for end users and must be used in the last case.
+
+If you don't use Proguard for release builds, it can be the best solution for this case. But enabling proguard for debug builds  will slowdown build time and makes debug process very hard, which is not recommended :(
+
+For this problem, the simplest solution is to enable Multidex in debug builds and disable it in release builds. But this slow down our development process, and thus, reducing productivity.
+
+But the best solution for this case, is to define the `minSdkVersion` of development builds to 21 and use Multidex only in this build variant. The dex generated for ART is much faster than considering a compatible version for all devices, and will not cause any impact in development process. It's very recommended to read this [article](http://developer.android.com/intl/pt-br/tools/building/multidex.html#dev-build) to understand the implementation of this concept.
+
+__OBS:__ Using 21 as our `minSdkVersion` for development builds, does not means that we must not test our apps in older versions in our development process.
 
 # 2. Distribution
 
