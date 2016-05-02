@@ -27,7 +27,7 @@ Before adding a third-party library to your project, you are doing a high commit
  - Focused to resolve a specific problem
    - Try to avoid all-in-one libraries. Instead, choose smaller libraries to resolve each problem you have. Choosing a big library can be a bad choice. In case any problem, will be very hard to replace it, when very coupled to the app, or fix it.
  - Lower dex count
-   - If you can't decide what library choose with a set of libraries for a single usage, try to compare the dexcount of them. Because it's easy to include libraries to your project, the dexcount of your app can increase very fast, and can be a problem in long term. When choosing a library, use this [tool](http://www.methodscount.com) as a comparator before including it in your project
+   - If you can't decide what library choose with a set of libraries for a single problem, try to compare the dexcount of them. Because it's easy to include libraries to your project, the dexcount of your app can increase very fast, and can be a problem in long term. When choosing a library, use this [tool](http://www.methodscount.com) as a comparator before including it in your project
  - Look at some Github metrics:
    - Opened Issues number (Closed issues number is a good tip too)
    - Number of stars
